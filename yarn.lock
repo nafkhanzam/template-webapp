@@ -977,10 +977,10 @@
     get-age "^1.0.1"
     moment "^2.29.1"
 
-"@nafkhanzam/react-next-components@^1.0.6":
-  version "1.0.6"
-  resolved "https://npm.pkg.github.com/download/@nafkhanzam/react-next-components/1.0.6/eb500c7ed45b5ab0020f62ad9325d0b836dfeb63d576d1eb7913f19d8eadf596#a498796eb41c34dcc967e760b764b880f9886650"
-  integrity sha512-toRmv7LvUxJKnNVKjc+7Xw3zU9Dm3HjCRIBEj55FXECl8TbR1y+NpwUfuFf9wf57xJAcztUHj1H//3YtZYPAog==
+"@nafkhanzam/react-next-components@^1.0.7":
+  version "1.0.7"
+  resolved "https://npm.pkg.github.com/download/@nafkhanzam/react-next-components/1.0.7/43cfea638f149c1c815d9d71a38d71971c4953b718c5f329a6c3af6f9155e291#0e14d94474e33f9a19d544a7c9161f95ddcd8bae"
+  integrity sha512-H/qFazv8oNXOVqlsvamdOofnYW/v9BpWzZ5PceujkPTSk20xH/xJYj0LwyaiEgvi2m4dVztGZSn3t0kHpxtX9w==
   dependencies:
     "@nafkhanzam/common-utils" "^0.0.15"
     "@nafkhanzam/react-architecture" "^0.0.102"
@@ -1166,6 +1166,11 @@
   version "14.14.25"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.25.tgz#15967a7b577ff81383f9b888aa6705d43fbbae93"
   integrity sha512-EPpXLOVqDvisVxtlbvzfyqSsFeQxltFbluZNRndIb8tr9KiBnYNLzrc1N3pyKUCww2RNrfHDViqDWWE1LCJQtQ==
+
+"@types/nprogress@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/nprogress/-/nprogress-0.2.0.tgz#86c593682d4199212a0509cc3c4d562bbbd6e45f"
+  integrity sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"

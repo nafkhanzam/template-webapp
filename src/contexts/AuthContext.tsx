@@ -117,7 +117,8 @@ export const AuthProvider: React.FC = (props) => {
       saveLogged={saveLogged}
       getContext={getContext}
       onLogout={onLogout}
-      onError={console.error}>
+      onError={console.error}
+    >
       <AuthContextScreenProvider>{props.children}</AuthContextScreenProvider>
     </OriginalAuthProvider>
   );
@@ -144,6 +145,7 @@ export type AuthContextScreen = {
 
 const nonLoggedRedirect = async () => {
   // TODO: add redirect
+  console.log("test");
 };
 
 const [AuthScreenProvider, useAuthScreen] = createNonNullContext<AuthContextScreen>();
@@ -159,4 +161,9 @@ const AuthContextScreenProvider: React.FC<{}> = (props) => {
   const value = {withAuth, withLogged};
 
   return <AuthScreenProvider value={value}>{props.children}</AuthScreenProvider>;
+};
+
+export const withLogged = <T extends AuthedPage>(Comp: T): T => {
+  (Comp as any).loggedRequired = true;
+  return Comp;
 };
