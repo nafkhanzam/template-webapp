@@ -9,7 +9,8 @@ declare global {
   type PageStatus = "LOADING" | "ERROR" | "NOT FOUND" | "DONE";
   type MaybePromise<T> = Promise<T> | T;
 
-  type Role = "USER";
+  const roles = ["USER"] as const;
+  type Role = typeof roles[number];
 
   type Color = string;
 

@@ -977,10 +977,10 @@
     get-age "^1.0.1"
     moment "^2.29.1"
 
-"@nafkhanzam/react-next-components@^1.0.5":
-  version "1.0.5"
-  resolved "https://npm.pkg.github.com/download/@nafkhanzam/react-next-components/1.0.5/9f7500e766fe1dcfcd934085bbd7939cb72ad58e43dd8f0d89372e516be2f999#f272f6fe9de7e0c7a02727445ce64920b88e68ee"
-  integrity sha512-8vn+uMn+rf5JsSAOJE8iqnDv7BOHxCAlgMTjvkstLactvNTwM1FhxAVE9B4xZmcCpaSdCQH8dFylKB23/XESGQ==
+"@nafkhanzam/react-next-components@^1.0.6":
+  version "1.0.6"
+  resolved "https://npm.pkg.github.com/download/@nafkhanzam/react-next-components/1.0.6/eb500c7ed45b5ab0020f62ad9325d0b836dfeb63d576d1eb7913f19d8eadf596#a498796eb41c34dcc967e760b764b880f9886650"
+  integrity sha512-toRmv7LvUxJKnNVKjc+7Xw3zU9Dm3HjCRIBEj55FXECl8TbR1y+NpwUfuFf9wf57xJAcztUHj1H//3YtZYPAog==
   dependencies:
     "@nafkhanzam/common-utils" "^0.0.15"
     "@nafkhanzam/react-architecture" "^0.0.102"

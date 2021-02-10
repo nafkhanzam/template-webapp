@@ -31,20 +31,29 @@ export type LoggedPageFC<Props = {}> = LoggedAuthFC<LoggedContextType, ContextTy
 
 type StorageKey = "token" | "role";
 
+const getStorageValue = (key: StorageKey) => localStorage.getItem(key);
+const setStorageValue = (key: StorageKey, value: string) => localStorage.setItem(key, value);
+const removeStorageValue = (key: StorageKey) => localStorage.removeItem(key);
+
 const getSavedLogged = async (): Promise<LoggedContextType | null> => {
-  // const {token, role} = localStorage.multiGet(fieldList);
-  // if (token && role) {
-  //   return {token, role};
-  // }
+  const token = getStorageValue("token");
+  const role = getStorageValue("role");
+  if (roles.includes(role as Role)) {
+    if (token) {
+      return {token, role: role as Role};
+    }
+  }
   return null;
 };
 
 const saveLogged = async (logged: LoggedContextType) => {
-  // localStorage.multiSet(logged);
+  setStorageValue("token", logged.token);
+  setStorageValue("role", logged.role);
 };
 
 const onLogout = async () => {
-  // localStorage.multiRemove(fieldList);
+  removeStorageValue("token");
+  removeStorageValue("role");
 };
 
 export const AuthProvider: React.FC = (props) => {
@@ -133,6 +142,10 @@ export type AuthContextScreen = {
   withLogged: WithLogged;
 };
 
+const nonLoggedRedirect = async () => {
+  // TODO: add redirect
+};
+
 const [AuthScreenProvider, useAuthScreen] = createNonNullContext<AuthContextScreen>();
 
 const AuthContextScreenProvider: React.FC<{}> = (props) => {
@@ -141,8 +154,7 @@ const AuthContextScreenProvider: React.FC<{}> = (props) => {
   const {phase} = auth.context;
 
   const withAuth = createWithAuthContextWrapper(phase, useAuthContext);
-  // TODO: Implement redirect to login page callback.
-  const withLogged = createWithLoggedAuthContextWrapper(phase, useAuthContext, async () => {});
+  const withLogged = createWithLoggedAuthContextWrapper(phase, useAuthContext, nonLoggedRedirect);
 
   const value = {withAuth, withLogged};
 
