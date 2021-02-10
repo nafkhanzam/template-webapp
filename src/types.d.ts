@@ -1,9 +1,5 @@
-import {AppComponents} from "@/components1-extended";
-import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
-import {ParamListBase, RouteProp} from "@react-navigation/native";
-import {StackNavigationProp} from "@react-navigation/stack";
-import {LoggedPageFC, PageFC} from "./contexts/AuthContext";
-import {StackParamList, StackRoute} from "./routes";
+import {AppComponents} from "@/components";
+import {LoggedPageFC, PageFC} from "@/contexts/AuthContext";
 
 declare global {
   type PageStatus = "LOADING" | "ERROR" | "NOT FOUND" | "DONE";
@@ -14,23 +10,9 @@ declare global {
 
   type Color = string;
 
-  interface NavigationProps<ParamList extends ParamListBase, Route extends keyof ParamList> {
-    navigation: StackNavigationProp<ParamList, Route>;
-    route: RouteProp<ParamList, Route>;
-  }
-
-  interface BottomNavigationProps<ParamList extends ParamListBase, Route extends keyof ParamList> {
-    navigation: BottomTabNavigationProp<ParamList, Route>;
-    route: RouteProp<ParamList, Route>;
-  }
-
-  type Screen<Route extends StackRoute> = React.FC<NavigationProps<StackParamList, Route>>;
-  type AuthScreen<Route extends StackRoute, Props = {}> = PageFC<
-    NavigationProps<StackParamList, Route> & Props
-  >;
-  type AuthedScreen<Route extends StackRoute, Props = {}> = LoggedPageFC<
-    NavigationProps<StackParamList, Route> & Props
-  >;
+  type Page = React.FC<{router: NextRouter}>;
+  type AuthPage = PageFC<{auth: AuthContext; router: NextRouter}>;
+  type AuthedPage = LoggedPageFC<{auth: AuthedContext; router: NextRouter}>;
 
   type UI<Props = {}> = React.FC<{comp: AppComponents} & Props>;
 
