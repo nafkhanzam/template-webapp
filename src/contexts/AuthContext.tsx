@@ -145,7 +145,6 @@ export type AuthContextScreen = {
 
 const nonLoggedRedirect = async () => {
   // TODO: add redirect
-  console.log("test");
 };
 
 const [AuthScreenProvider, useAuthScreen] = createNonNullContext<AuthContextScreen>();

@@ -19,7 +19,7 @@ const Comp: React.FC<AppProps> = ({Component, pageProps, router}: AppProps) => {
 
   const isLoggedPage = !!(Component as any).loggedRequired;
   const TheComp = (props: any) => <Component {...{router}} {...pageProps} {...props} />;
-  console.log("isLoggedPage", isLoggedPage);
+
   if (isLoggedPage) {
     const Comp = withLogged(TheComp);
     return <Comp />;
