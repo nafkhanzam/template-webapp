@@ -1,6 +1,7 @@
 import {metas} from "@/constants";
 import {AuthProvider, useAuthContext, useAuthScreen} from "@/contexts/AuthContext";
 import {HeadTitle, initNProgress, useRouterScroll} from "@nafkhanzam/react-next-components";
+import "../styles/globals.css";
 import "moment/locale/id";
 import {AppProps} from "next/app";
 import Router from "next/router";
