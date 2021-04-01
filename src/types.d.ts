@@ -6,9 +6,6 @@ declare global {
   type PageStatus = "LOADING" | "ERROR" | "NOT FOUND" | "DONE";
   type MaybePromise<T> = Promise<T> | T;
 
-  const roles = ["USER"] as const;
-  type Role = typeof roles[number];
-
   type Color = string;
 
   type Page = React.FC<{router: NextRouter}>;

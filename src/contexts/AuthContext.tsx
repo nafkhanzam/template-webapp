@@ -1,5 +1,6 @@
 import {AppComponents} from "@/components";
 import {theme} from "@/constants";
+import {createAuthedResourceGqlClient, createResourceGqlClient, ResourceApi} from "@/graphql";
 import {
   AuthContext,
   AuthFC,
@@ -12,11 +13,12 @@ import {
 } from "@nafkhanzam/react-architecture";
 import React, {useCallback, useMemo} from "react";
 
-type LoggedContextType = {token: string; role: Role};
+export type LoggedContextType = {token: string; role: Role};
 
 type ContextType = {
   phase: ComponentPhase;
   comp: AppComponents;
+  api: ResourceApi;
 };
 
 const [BaseAuthProvider, useAuthContext] = createNonNullContext<
@@ -30,6 +32,8 @@ export type PageFC<Props = {}> = AuthFC<LoggedContextType, ContextType, Props>;
 export type LoggedPageFC<Props = {}> = LoggedAuthFC<LoggedContextType, ContextType, Props>;
 
 type StorageKey = "token" | "role";
+const roles = ["USER"] as const;
+type Role = typeof roles[number];
 
 const getStorageValue = (key: StorageKey) => localStorage.getItem(key);
 const setStorageValue = (key: StorageKey, value: string) => localStorage.setItem(key, value);
@@ -105,7 +109,8 @@ export const AuthProvider: React.FC = (props) => {
 
   const getContext = useCallback(
     (logged: LoggedContextType | null) => {
-      return {comp, phase};
+      const api = logged ? createAuthedResourceGqlClient(logged.token) : createResourceGqlClient();
+      return {comp, phase, api};
     },
     [comp, phase],
   );
@@ -145,7 +150,7 @@ export type AuthContextScreen = {
 
 const nonLoggedRedirect = async () => {
   // TODO: add redirect
-  location.href = "/login";
+  location.replace(`/login?redirect=${location.pathname}`);
 };
 
 const [AuthScreenProvider, useAuthScreen] = createNonNullContext<AuthContextScreen>();
