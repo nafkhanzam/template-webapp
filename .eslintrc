@@ -9,7 +9,11 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": [1, {"args": "after-used", "argsIgnorePattern": "^_"}],
+    "react/display-name": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {"args": "after-used", "argsIgnorePattern": "^_"}
+    ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-types": [

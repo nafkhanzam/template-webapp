@@ -1,4 +1,4 @@
-export const _404: React.FC<{}> = (props) => {
+export const _404: React.FC<{}> = () => {
   return <p>404 Not Found</p>;
 };
 

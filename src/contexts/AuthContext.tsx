@@ -25,8 +25,7 @@ const [BaseAuthProvider, useAuthContext] = createNonNullContext<
   AuthContext<LoggedContextType, ContextType>
 >();
 
-export {useAuthContext};
-export {useAuthScreen};
+export {useAuthContext, useAuthScreen};
 
 export type PageFC<Props = {}> = AuthFC<LoggedContextType, ContextType, Props>;
 export type LoggedPageFC<Props = {}> = LoggedAuthFC<LoggedContextType, ContextType, Props>;

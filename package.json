@@ -18,7 +18,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@nafkhanzam/common-utils": "^0.0.40",
     "@nafkhanzam/react-architecture": "^0.0.104",
-    "@nafkhanzam/react-next-components": "^1.0.15",
+    "@nafkhanzam/react-next-components": "^1.0.17",
+    "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
@@ -30,7 +31,8 @@
     "nprogress": "^0.2.0",
     "postcss": "^8.2.14",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "tailwindcss-debug-screens": "^2.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.4",

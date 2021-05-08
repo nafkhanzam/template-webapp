@@ -1,5 +1,5 @@
 import {AuthProvider, useAuthContext, useAuthScreen} from "@/contexts/AuthContext";
-import {initNProgress, useRouterScroll} from "@nafkhanzam/react-next-components";
+import {initNProgress} from "@nafkhanzam/react-next-components";
 import "moment/locale/id";
 import {AppProps} from "next/app";
 import Router from "next/router";
@@ -32,8 +32,6 @@ const Comp: React.FC<AppProps> = ({Component, pageProps, router}: AppProps) => {
 };
 
 export default function MyApp(props: AppProps) {
-  useRouterScroll();
-
   return (
     <AuthProvider>
       <DefaultSeo {...seoProps} />
