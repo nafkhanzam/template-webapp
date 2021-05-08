@@ -1,11 +1,12 @@
-import {metas} from "@/constants";
 import {AuthProvider, useAuthContext, useAuthScreen} from "@/contexts/AuthContext";
-import {HeadTitle, initNProgress, useRouterScroll} from "@nafkhanzam/react-next-components";
-import "../styles/globals.css";
+import {initNProgress, useRouterScroll} from "@nafkhanzam/react-next-components";
 import "moment/locale/id";
 import {AppProps} from "next/app";
 import Router from "next/router";
 import "nprogress/nprogress.css"; //styles of nprogress
+import "../styles/globals.css";
+import {DefaultSeo} from "next-seo";
+import {seoProps} from "@/seo";
 
 initNProgress(Router);
 
@@ -35,7 +36,7 @@ export default function MyApp(props: AppProps) {
 
   return (
     <AuthProvider>
-      <HeadTitle title={metas.title} />
+      <DefaultSeo {...seoProps} />
       <Comp {...props} />
     </AuthProvider>
   );
