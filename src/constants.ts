@@ -6,7 +6,7 @@ export const metas = {
   title: "@nafkhanzam/template-webapp",
   description: "template-webapp description",
   twitterHandle: "@nafkhanzam",
-  graphqlApiUrl: "https://localhost:4000/graphql",
+  graphqlApiUrl: process.env.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT,
 };
 
 export const assets = {
