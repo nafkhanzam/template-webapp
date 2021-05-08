@@ -20,5 +20,5 @@ const typeMap = (type: Type): TypeProps => {
 };
 
 export const Component: Comp<Type, CompProps> = ({type, props, comp}) => {
-  return <ComponentUI typeProps={typeMap(type)} compProps={props} comp={comp} />;
+  return <ComponentUI typeProps={typeMap(type ?? "main")} compProps={props} comp={comp} />;
 };

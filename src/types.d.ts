@@ -15,6 +15,6 @@ declare global {
   type UI<Props = {}> = React.FC<{comp: AppComponents} & Props>;
 
   type FetchCallbackReturn = MaybePromise<boolean | void>;
-  type Comp<T, P = {}> = React.FC<{type: T; props: P; comp: AppComponents}>;
+  type Comp<T, P = {}> = React.FC<{type?: T; props: P; comp: AppComponents}>;
   type CompUI<T = {}, C = {}> = React.FC<{typeProps: T; compProps: C; comp: AppComponents}>;
 }
