@@ -1,3 +1,1 @@
-export const assets = {
-  favicon: "/favicon.ico",
-};
+export const assets = {favicon: "/assets/images/favicon.ico"};
