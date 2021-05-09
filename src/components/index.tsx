@@ -20,7 +20,7 @@ export class AppComponents extends EssentialComponents {
   ) {
     super();
   }
-  wrap = <A, B>(Comp: Comp<A, B>): ClassFC<typeof Comp> => (props) => (
+  wrap = <A extends string, B>(Comp: Comp<A, B>): ClassFC<typeof Comp> => (props) => (
     <Comp comp={this} {...props} />
   );
 
