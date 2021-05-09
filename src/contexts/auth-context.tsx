@@ -1,5 +1,4 @@
-import {AppComponents} from "@/components";
-import {theme} from "@/constants";
+import {AppComponents, Theme} from "@/components";
 import {createAuthedResourceGqlClient, createResourceGqlClient, ResourceApi} from "@/graphql";
 import {
   AuthContext,
@@ -59,15 +58,15 @@ const onLogout = async () => {
   removeStorageValue("role");
 };
 
-export const AuthProvider: React.FC = (props) => {
+export const AuthProvider: React.FC<{theme: Theme}> = (props) => {
   const comp = useMemo(
     () =>
-      new AppComponents(theme, {
+      new AppComponents(props.theme, {
         empty: <></>,
         error: () => <></>,
         loading: <></>,
       }),
-    [],
+    [props.theme],
   );
   // TODO: Implement empty, error, and loading components.
 

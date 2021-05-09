@@ -1,5 +1,6 @@
 import {NextSeoProps} from "next-seo";
-import {assets, metas} from "./constants";
+import { assets } from "./assets";
+import {metas} from "./metas";
 
 export const seoProps: NextSeoProps = {
   titleTemplate: metas.title,

@@ -1,5 +1,3 @@
-import {Theme} from "./components";
-
 const MODE = process.env.NEXT_PUBLIC_MODE?.toLowerCase();
 export const metas = {
   isProduction: MODE === "production" || MODE === "prod",
@@ -12,9 +10,3 @@ export const metas = {
   },
   graphqlApiUrl: process.env.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT ?? "http://localhost:4000/graphql",
 };
-
-export const assets = {
-  favicon: "/favicon.ico",
-};
-
-export const theme: Theme = {colors: {}};
