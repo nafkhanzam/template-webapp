@@ -1,4 +1,4 @@
-import {metas} from "@/constants/metas";
+import {metas} from "@/constants";
 import {GraphQLClient} from "graphql-request";
 import {getSdk} from "./resource";
 
