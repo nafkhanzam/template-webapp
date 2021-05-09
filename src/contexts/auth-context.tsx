@@ -1,4 +1,5 @@
 import {AppComponents, Theme} from "@/components";
+import {Role, roles} from "@/constants";
 import {createAuthedResourceGqlClient, createResourceGqlClient, ResourceApi} from "@/graphql";
 import {
   AuthContext,
@@ -30,8 +31,6 @@ export type PageFC<Props = {}> = AuthFC<LoggedContextType, ContextType, Props>;
 export type LoggedPageFC<Props = {}> = LoggedAuthFC<LoggedContextType, ContextType, Props>;
 
 type StorageKey = "token" | "role";
-const roles = ["USER"] as const;
-type Role = typeof roles[number];
 
 const getStorageValue = (key: StorageKey) => localStorage.getItem(key);
 const setStorageValue = (key: StorageKey, value: string) => localStorage.setItem(key, value);
