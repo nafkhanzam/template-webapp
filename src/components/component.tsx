@@ -4,7 +4,7 @@
  * A conventional component example.
  */
 
-type Type = "main";
+type Type = "default";
 type TypeProps = {};
 type CompProps = {};
 
@@ -14,11 +14,11 @@ const ComponentUI: CompUI<TypeProps, CompProps> = ({typeProps, compProps, comp})
 
 const typeMap = (type: Type): TypeProps => {
   switch (type) {
-    case "main":
+    case "default":
       return {};
   }
 };
 
 export const Component: Comp<Type, CompProps> = ({type, props, comp}) => {
-  return <ComponentUI typeProps={typeMap(type ?? "main")} compProps={props} comp={comp} />;
+  return <ComponentUI typeProps={typeMap(type ?? "default")} compProps={props} comp={comp} />;
 };

@@ -64,39 +64,13 @@ export const AuthProvider: React.FC = (props) => {
     () =>
       new AppComponents(theme, {
         empty: <></>,
-        // eslint-disable-next-line react/display-name
         error: () => <></>,
         loading: <></>,
       }),
     [],
   );
-  // comp.comps = {
-  //   error: () => (
-  //     <comp.ScreenWrapper noScroll>
-  //       <comp.CenterWrapper>
-  //         <comp.Text type="body" bold>
-  //           Error!
-  //         </comp.Text>
-  //       </comp.CenterWrapper>
-  //     </comp.ScreenWrapper>
-  //   ),
-  //   empty: (
-  //     <comp.ScreenWrapper noScroll>
-  //       <comp.CenterWrapper>
-  //         <comp.Text type="body" bold>
-  //           Empty!
-  //         </comp.Text>
-  //       </comp.CenterWrapper>
-  //     </comp.ScreenWrapper>
-  //   ),
-  //   loading: (
-  //     <comp.ScreenWrapper noScroll>
-  //       <comp.CenterWrapper>
-  //         <comp.Spinner />
-  //       </comp.CenterWrapper>
-  //     </comp.ScreenWrapper>
-  //   ),
-  // };
+  // TODO: Implement empty, error, and loading components.
+
   const phase = useMemo(
     () =>
       new ComponentPhase({
@@ -130,11 +104,15 @@ export const AuthProvider: React.FC = (props) => {
 
 //! Hacky stuff, don't use it!
 const withAuthWrapper = () =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createWithAuthContextWrapper<LoggedContextType, ContextType>(null as any, null as any);
 const withLoggedWrapper = () =>
   createWithLoggedAuthContextWrapper<LoggedContextType, ContextType>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     null as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     null as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     null as any,
   );
 //! End of hacky stuff.
@@ -168,6 +146,6 @@ const AuthContextScreenProvider: React.FC<{}> = (props) => {
 };
 
 export const withLogged = <T extends AuthedPage>(Comp: T): T => {
-  (Comp as any).loggedRequired = true;
+  Comp.loggedRequired = true;
   return Comp;
 };

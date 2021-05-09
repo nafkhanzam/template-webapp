@@ -1,5 +1,5 @@
 import {extract} from "@/components";
-import {Layout} from "@/layouts/Layout";
+import {Layout} from "@/layouts/layout";
 
 const IndexUI: UI = (props) => {
   const {comp} = extract(props);

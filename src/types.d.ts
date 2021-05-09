@@ -1,5 +1,5 @@
 import {AppComponents} from "@/components";
-import {LoggedPageFC, PageFC} from "@/contexts/AuthContext";
+import {LoggedPageFC, PageFC} from "@/contexts/auth-context";
 import {NextRouter} from "next/router";
 
 declare global {

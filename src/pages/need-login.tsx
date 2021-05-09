@@ -1,6 +1,6 @@
 import {extract} from "@/components";
-import {withLogged} from "@/contexts/AuthContext";
-import {AuthedLayout} from "@/layouts/AuthedLayout";
+import {withLogged} from "@/contexts/auth-context";
+import {AuthedLayout} from "@/layouts/authed-layout";
 
 const NeedLoginUI: UI = (props) => {
   const {comp} = extract(props);

@@ -8,6 +8,7 @@ export type Theme = {
 };
 
 export type CompFC<Props> = React.FC<{comp: AppComponents} & Props>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ClassFC<FC extends CompFC<any>> = React.FC<Omit<Parameters<FC>[0], "comp">>;
 export class AppComponents extends EssentialComponents {
   constructor(
@@ -20,7 +21,7 @@ export class AppComponents extends EssentialComponents {
   ) {
     super();
   }
-  wrap = <A extends string, B>(Comp: Comp<A, B>): ClassFC<typeof Comp> => (props) => (
+  wrap = <Type, Props>(Comp: Comp<Type, Props>): ClassFC<typeof Comp> => (props) => (
     <Comp comp={this} {...props} />
   );
 
