@@ -20,9 +20,8 @@ const removeExtension = (filePath: string) => {
       .split("/")
       .map(_.camelCase)
       .map((v) => (v.match(/^[0-9](.*)/) ? `_${v}` : v));
-    _.set(result, objPath.join("."), filePath);
+    _.set(result, objPath, filePath);
   }
-  // console.log(`export const assets = ${JSON.stringify(result)}`);
   await fs.writeFile(
     "./src/constants/assets.ts",
     `export const assets = ${JSON.stringify(result)}`,
