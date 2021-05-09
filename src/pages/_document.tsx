@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
         </Head>
         <body
           className={clx({
-            "debug-screens": metas.isNonProduction,
+            "debug-screens": !metas.isProduction,
           })}
         >
           {localJses.map((v, i) => (

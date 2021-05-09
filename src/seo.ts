@@ -6,15 +6,15 @@ export const seoProps: NextSeoProps = {
   title: metas.title,
   defaultTitle: metas.title,
   // @ts-expect-error disable index
-  dangerouslySetAllPagesToNoIndex: metas.isNonProduction,
-  dangerouslySetAllPagesToNoFollow: metas.isNonProduction,
-  noindex: metas.isNonProduction,
-  nofollow: metas.isNonProduction,
+  dangerouslySetAllPagesToNoIndex: !metas.isProduction,
+  dangerouslySetAllPagesToNoFollow: !metas.isProduction,
+  noindex: !metas.isProduction,
+  nofollow: !metas.isProduction,
   description: metas.description,
   twitter: {
     cardType: "summary",
-    handle: metas.twitterHandle,
-    site: metas.twitterHandle,
+    handle: metas.twitter.handle,
+    site: metas.twitter.handle,
   },
   openGraph: {
     url: metas.url,
