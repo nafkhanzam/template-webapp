@@ -20,7 +20,9 @@ const Comp: React.FC<AppProps> = ({Component, pageProps, router}: AppProps) => {
     return auth.context.phase.defaults.loadingComponent;
   }
 
-  const isLoggedPage = !!(Component as any).loggedRequired;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isLoggedPage = !!(Component as Record<string, any>).loggedRequired;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const TheComp = (props: any) => <Component {...{router}} {...pageProps} {...props} />;
 
   if (isLoggedPage) {
