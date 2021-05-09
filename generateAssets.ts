@@ -12,6 +12,7 @@ const removeExtension = (filePath: string) => {
 
 (async () => {
   const rawEntries = await fg(`${PREFIX}**/*`);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = {};
   for (const entry of rawEntries) {
     const filePath = entry.substr("public".length);
