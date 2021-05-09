@@ -2163,6 +2163,17 @@
     get-age "^1.0.1"
     moment "^2.29.1"
 
+"@nafkhanzam/react-architecture@^0.0.106":
+  version "0.0.106"
+  resolved "https://npm.pkg.github.com/download/@nafkhanzam/react-architecture/0.0.106/dec60f77adb0e172e956ee2894a000131f7e9e6a8e38ff2c734cd79328398734#6b44289aa707d06250740a730e02c89a7d04b278"
+  integrity sha512-eueXcSvu69ar+QmRbEJn/R7It1646Hi4OykXeqYE5oSH8H7/jxOOUW8bduwBI+odOEEQw3y2T1XUfApKU5v5NQ==
+  dependencies:
+    "@react-native-async-storage/async-storage" "^1.13.2"
+    axios "^0.21.1"
+    big-roman "^1.0.1"
+    get-age "^1.0.1"
+    moment "^2.29.1"
+
 "@nafkhanzam/react-next-components@^1.0.17":
   version "1.0.17"
   resolved "https://npm.pkg.github.com/download/@nafkhanzam/react-next-components/1.0.17/6b46f72a70c6d1814063e05911ca6102f93ac00c5d249513ed6e4d47a27d957c#625871643bb51a8cffcc7fce19f5b9397b21882a"

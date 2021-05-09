@@ -1,10 +1,6 @@
 import {AppComponents} from "@/components";
 import {Role, roles} from "@/constants";
-import {
-  createAuthedResourceGqlClient,
-  createResourceGqlClient,
-  ResourceApi,
-} from "@/graphql";
+import {createAuthedResourceGqlClient, createResourceGqlClient, ResourceApi} from "@/graphql";
 import {Theme} from "@/themes/base";
 import {
   AuthContext,
@@ -33,17 +29,12 @@ const [BaseAuthProvider, useAuthContext] = createNonNullContext<
 export {useAuthContext, useAuthScreen};
 
 export type PageFC<Props = {}> = AuthFC<LoggedContextType, ContextType, Props>;
-export type LoggedPageFC<Props = {}> = LoggedAuthFC<
-  LoggedContextType,
-  ContextType,
-  Props
->;
+export type LoggedPageFC<Props = {}> = LoggedAuthFC<LoggedContextType, ContextType, Props>;
 
 type StorageKey = "token" | "role";
 
 const getStorageValue = (key: StorageKey) => localStorage.getItem(key);
-const setStorageValue = (key: StorageKey, value: string) =>
-  localStorage.setItem(key, value);
+const setStorageValue = (key: StorageKey, value: string) => localStorage.setItem(key, value);
 const removeStorageValue = (key: StorageKey) => localStorage.removeItem(key);
 
 const getSavedLogged = async (): Promise<LoggedContextType | null> => {
@@ -68,31 +59,19 @@ const onLogout = async () => {
 };
 
 export const AuthProvider: React.FC<{theme: Theme}> = (props) => {
-  const comp = useMemo(
-    () =>
-      new AppComponents(props.theme, {
-        empty: <></>,
-        error: () => <></>,
-        loading: <></>,
-      }),
-    [props.theme],
-  );
-  // TODO: Implement empty, error, and loading components.
-
+  const comp = useMemo(() => new AppComponents(props.theme), [props.theme]);
   const phase = useMemo(
     () =>
       new ComponentPhase({
-        errorComponent: comp.comps.error(undefined),
-        loadingComponent: comp.comps.loading,
+        errorComponent: (_err) => <></>,
+        loadingComponent: <></>,
       }),
-    [comp.comps],
+    [],
   );
 
   const getContext = useCallback(
     (logged: LoggedContextType | null) => {
-      const api = logged
-        ? createAuthedResourceGqlClient(logged.token)
-        : createResourceGqlClient();
+      const api = logged ? createAuthedResourceGqlClient(logged.token) : createResourceGqlClient();
       return {comp, phase, api};
     },
     [comp, phase],
@@ -105,7 +84,8 @@ export const AuthProvider: React.FC<{theme: Theme}> = (props) => {
       saveLogged={saveLogged}
       getContext={getContext}
       onLogout={onLogout}
-      onError={console.error}>
+      onError={console.error}
+    >
       <AuthContextScreenProvider>{props.children}</AuthContextScreenProvider>
     </OriginalAuthProvider>
   );
@@ -114,10 +94,7 @@ export const AuthProvider: React.FC<{theme: Theme}> = (props) => {
 //! Hacky stuff, don't use it!
 const withAuthWrapper = () =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  createWithAuthContextWrapper<LoggedContextType, ContextType>(
-    null as any,
-    null as any,
-  );
+  createWithAuthContextWrapper<LoggedContextType, ContextType>(null as any, null as any);
 const withLoggedWrapper = () =>
   createWithLoggedAuthContextWrapper<LoggedContextType, ContextType>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -142,10 +119,7 @@ const nonLoggedRedirect = async () => {
   location.replace(`/login?redirect=${location.pathname}`);
 };
 
-const [
-  AuthScreenProvider,
-  useAuthScreen,
-] = createNonNullContext<AuthContextScreen>();
+const [AuthScreenProvider, useAuthScreen] = createNonNullContext<AuthContextScreen>();
 
 const AuthContextScreenProvider: React.FC<{}> = (props) => {
   const auth = useAuthContext();
@@ -153,17 +127,11 @@ const AuthContextScreenProvider: React.FC<{}> = (props) => {
   const {phase} = auth.context;
 
   const withAuth = createWithAuthContextWrapper(phase, useAuthContext);
-  const withLogged = createWithLoggedAuthContextWrapper(
-    phase,
-    useAuthContext,
-    nonLoggedRedirect,
-  );
+  const withLogged = createWithLoggedAuthContextWrapper(phase, useAuthContext, nonLoggedRedirect);
 
   const value = {withAuth, withLogged};
 
-  return (
-    <AuthScreenProvider value={value}>{props.children}</AuthScreenProvider>
-  );
+  return <AuthScreenProvider value={value}>{props.children}</AuthScreenProvider>;
 };
 
 export const withLogged = <T extends AuthedPage>(Comp: T): T => {
