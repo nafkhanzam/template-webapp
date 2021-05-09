@@ -1,3 +1,3 @@
-import {Theme} from "@/components";
+import {Theme} from "./base";
 
 export const defaultTheme: Theme = {colors: {}};
