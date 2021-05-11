@@ -25,6 +25,11 @@ const removeExtension = (filePath: string) => {
   }
   await fs.writeFile(
     "./src/constants/assets.ts",
-    `export const assets = ${JSON.stringify(result)}`,
+    `/**
+    * THIS IS AUTOMATICALLY GENERATED USING /generateAssets.ts.
+    * DON'T CHANGE IT MANUALLY.
+    */
+
+    export const assets = ${JSON.stringify(result)}`,
   );
 })();
