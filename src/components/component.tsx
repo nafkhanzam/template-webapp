@@ -4,7 +4,8 @@
  * A conventional component example.
  */
 
-type Type = "default";
+import {AppComponents, extract} from ".";
+
 type TypeProps = {};
 type CompProps = {};
 
@@ -12,13 +13,19 @@ const ComponentUI: CompUI<TypeProps, CompProps> = ({typeProps, compProps, comp})
   return <></>;
 };
 
-const typeMap = (type: Type): TypeProps => {
+type Type = "default";
+const typeMap = (type: Type, comp: AppComponents): TypeProps => {
+  const {theme} = extract({comp});
   switch (type) {
     case "default":
       return {};
   }
 };
 
-export const Component: Comp<Type, CompProps> = ({type, props, comp}) => {
-  return <ComponentUI typeProps={typeMap(type ?? "default")} compProps={props} comp={comp} />;
+export const Component: Comp<Type, CompProps> = ({type, props, comp, children}) => {
+  return (
+    <ComponentUI typeProps={typeMap(type ?? "default", comp)} compProps={props} comp={comp}>
+      {children}
+    </ComponentUI>
+  );
 };
