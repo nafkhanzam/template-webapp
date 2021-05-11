@@ -1,4 +1,5 @@
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -14,12 +15,22 @@ module.exports = {
       },
     },
   ],
+  babel: async (options) => {
+    options.plugins.push(["@babel/plugin-proposal-private-property-in-object", {loose: true}]);
+    return options;
+  },
   webpackFinal: (config) => {
+    const plugins = [new TsconfigPathsPlugin()];
     if (config.resolve.plugins) {
-      config.resolve.plugins.push(new TsconfigPathsPlugin());
+      config.resolve.plugins.push(...plugins);
     } else {
-      config.resolve.plugins = [new TsconfigPathsPlugin()];
+      config.resolve.plugins = plugins;
     }
+    config.module.rules.push({
+      test: /\.css$/,
+      use: ["postcss-loader"],
+      include: path.resolve(__dirname, "../src/styles"),
+    });
     return config;
   },
 };
