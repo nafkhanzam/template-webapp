@@ -25,7 +25,7 @@ const removeExtension = (filePath: string) => {
     _.set(result, objPath, filePath);
   }
   const resultPath = "./src/constants/assets.ts";
-  await prettier.resolveConfigFile();
+  const configFile = await prettier.resolveConfigFile();
   await fs.writeFile(
     resultPath,
     prettier.format(
@@ -38,7 +38,7 @@ const removeExtension = (filePath: string) => {
     export const assets = ${JSON.stringify(result)}
     `,
       {
-        parser: "babel",
+        filepath: configFile ?? undefined,
       },
     ),
   );
