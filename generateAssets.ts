@@ -1,6 +1,7 @@
 import fg from "fast-glob";
 import fs from "fs-extra";
 import _ from "lodash";
+import prettier from "prettier";
 
 const PREFIX = "public/assets/images/";
 
@@ -23,13 +24,22 @@ const removeExtension = (filePath: string) => {
       .map((v) => (v.match(/^[0-9](.*)/) ? `_${v}` : v));
     _.set(result, objPath, filePath);
   }
+  const resultPath = "./src/constants/assets.ts";
+  await prettier.resolveConfigFile();
   await fs.writeFile(
-    "./src/constants/assets.ts",
-    `/**
+    resultPath,
+    prettier.format(
+      `
+    /**
     * THIS IS AUTOMATICALLY GENERATED USING /generateAssets.ts.
     * DON'T CHANGE IT MANUALLY.
     */
 
-    export const assets = ${JSON.stringify(result)}`,
+    export const assets = ${JSON.stringify(result)}
+    `,
+      {
+        parser: "babel",
+      },
+    ),
   );
 })();
