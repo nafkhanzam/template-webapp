@@ -43,3 +43,41 @@ const removeExtension = (filePath: string) => {
     ),
   );
 })();
+
+const ASSET_PAGES = "src/pages/";
+
+(async () => {
+  const rawEntries = await fg(`${ASSET_PAGES}**/*`, {
+    ignore: ["src/pages/_document.tsx", "src/pages/_app.tsx"],
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const result: any = {};
+  for (const rawEntry of rawEntries) {
+    const entry = removeExtension(rawEntry);
+    const filePath = entry.substr(ASSET_PAGES.length - 1);
+    const objPath = entry
+      .substr(ASSET_PAGES.length)
+      .split("/")
+      .map(_.camelCase)
+      .map((v) => (v.match(/^[0-9](.*)/) ? `_${v}` : v));
+    _.set(result, objPath, filePath.replace(/\/index$/, "/"));
+  }
+  const resultPath = "./src/constants/urls.ts";
+  const configFile = await prettier.resolveConfigFile();
+  await fs.writeFile(
+    resultPath,
+    prettier.format(
+      `
+    /**
+    * THIS IS AUTOMATICALLY GENERATED USING /generateAssets.ts.
+    * DON'T CHANGE IT MANUALLY.
+    */
+
+    export const urls = ${JSON.stringify(result)}
+    `,
+      {
+        filepath: configFile ?? undefined,
+      },
+    ),
+  );
+})();
