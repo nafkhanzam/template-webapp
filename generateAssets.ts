@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import _ from "lodash";
 import prettier from "prettier";
 
-const PREFIX = "public/assets/images/";
+const ASSET_PREFIX = "public/assets/images/";
 
 const removeExtension = (filePath: string) => {
   const arr = filePath.split(".");
@@ -12,13 +12,13 @@ const removeExtension = (filePath: string) => {
 };
 
 (async () => {
-  const rawEntries = await fg(`${PREFIX}**/*`);
+  const rawEntries = await fg(`${ASSET_PREFIX}**/*`);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = {};
   for (const entry of rawEntries) {
     const filePath = entry.substr("public".length);
     const objPath = removeExtension(entry)
-      .substr(PREFIX.length)
+      .substr(ASSET_PREFIX.length)
       .split("/")
       .map(_.camelCase)
       .map((v) => (v.match(/^[0-9](.*)/) ? `_${v}` : v));
@@ -44,19 +44,19 @@ const removeExtension = (filePath: string) => {
   );
 })();
 
-const ASSET_PAGES = "src/pages/";
+const PAGES_PREFIX = "src/pages/";
 
 (async () => {
-  const rawEntries = await fg(`${ASSET_PAGES}**/*`, {
+  const rawEntries = await fg(`${PAGES_PREFIX}**/*`, {
     ignore: ["src/pages/_document.tsx", "src/pages/_app.tsx"],
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = {};
   for (const rawEntry of rawEntries) {
     const entry = removeExtension(rawEntry);
-    const filePath = entry.substr(ASSET_PAGES.length - 1);
+    const filePath = entry.substr(PAGES_PREFIX.length - 1);
     const objPath = entry
-      .substr(ASSET_PAGES.length)
+      .substr(PAGES_PREFIX.length)
       .split("/")
       .map(_.camelCase)
       .map((v) => (v.match(/^[0-9](.*)/) ? `_${v}` : v));
