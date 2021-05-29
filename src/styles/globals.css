@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @variants responsive {
+    .indent-sm {
+      text-indent: 2rem;
+    }
+    .indent-md {
+      text-indent: 3rem;
+    }
+    .indent-lg {
+      text-indent: 4rem;
+    }
+    .-indent-sm {
+      text-indent: -2rem;
+    }
+    .-indent-md {
+      text-indent: -3rem;
+    }
+    .-indent-lg {
+      text-indent: -4rem;
+    }
+  }
+}
+
 @import "../../node_modules/nprogress/nprogress.css";
 
 body {

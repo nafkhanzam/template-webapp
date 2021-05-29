@@ -9,5 +9,11 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography"), require("tailwindcss-debug-screens")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-debug-screens"),
+    require("@tailwindcss/line-clamp"),
+    require("tailwindcss-textshadow"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };
