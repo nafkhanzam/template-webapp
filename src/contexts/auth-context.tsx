@@ -1,5 +1,5 @@
 import {AppComponents} from "@/components";
-import {Role, roles} from "@/constants";
+import {User} from "@/constants";
 import {createAuthedResourceGqlClient, createResourceGqlClient, ResourceApi} from "@/graphql";
 import {Theme} from "@/themes/base";
 import {
@@ -10,11 +10,12 @@ import {
   createNonNullContext,
   createWithAuthContextWrapper,
   createWithLoggedAuthContextWrapper,
+  dummyAsync,
   LoggedAuthFC,
 } from "@nafkhanzam/react-architecture";
 import React, {useCallback, useMemo} from "react";
 
-export type LoggedContextType = {token: string; role: Role};
+export type LoggedContextType = {token: string; user: User};
 
 type ContextType = {
   phase: ComponentPhase;
@@ -22,40 +23,45 @@ type ContextType = {
   api: ResourceApi;
 };
 
-const [BaseAuthProvider, useAuthContext] = createNonNullContext<
-  AuthContext<LoggedContextType, ContextType>
->();
+const [BaseAuthProvider, useAuthContext] =
+  createNonNullContext<AuthContext<LoggedContextType, ContextType>>();
 
 export {useAuthContext, useAuthScreen};
 
 export type PageFC<Props = {}> = AuthFC<LoggedContextType, ContextType, Props>;
 export type LoggedPageFC<Props = {}> = LoggedAuthFC<LoggedContextType, ContextType, Props>;
 
-type StorageKey = "token" | "role";
+type StorageKey = "token";
 
 const getStorageValue = (key: StorageKey) => localStorage.getItem(key);
 const setStorageValue = (key: StorageKey, value: string) => localStorage.setItem(key, value);
 const removeStorageValue = (key: StorageKey) => localStorage.removeItem(key);
 
-const getSavedLogged = async (): Promise<LoggedContextType | null> => {
-  const token = getStorageValue("token");
-  const role = getStorageValue("role");
-  if (roles.includes(role as Role)) {
-    if (token) {
-      return {token, role: role as Role};
+const getSavedLogged = async (ctx: ContextType): Promise<LoggedContextType | null> => {
+  try {
+    const token = getStorageValue("token");
+    // TODO: Fetch user
+    const user = await dummyAsync<User | null>(
+      {
+        email: "nafkhanalzamzami@gmail.com",
+        fullName: "Moch. Nafkhan Alzamzami",
+        role: "USER",
+      },
+      500,
+    )();
+    if (token && user) {
+      return {token, user};
     }
-  }
+  } catch (error) {}
   return null;
 };
 
 const saveLogged = async (logged: LoggedContextType) => {
   setStorageValue("token", logged.token);
-  setStorageValue("role", logged.role);
 };
 
 const onLogout = async () => {
   removeStorageValue("token");
-  removeStorageValue("role");
 };
 
 export const AuthProvider: React.FC<{theme: Theme}> = (props) => {
@@ -115,7 +121,6 @@ export type AuthContextScreen = {
 };
 
 const nonLoggedRedirect = async () => {
-  // TODO: add redirect
   location.replace(`/login?redirect=${location.pathname}`);
 };
 

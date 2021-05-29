@@ -2259,6 +2259,16 @@
     get-age "^1.0.1"
     moment "^2.29.1"
 
+"@nafkhanzam/react-architecture@^0.0.110":
+  version "0.0.110"
+  resolved "https://registry.yarnpkg.com/@nafkhanzam/react-architecture/-/react-architecture-0.0.110.tgz#51004004248c44e3cd58568cb83ff7d593544d3f"
+  integrity sha512-K1j1Y4RWQ5rt/S+RIuhwlvEMVV5oj/VKvMUqmI3dKMKK3DzJwBRD9Ml7+olgTsI5379R0v6qo5VLJBcws2nuPw==
+  dependencies:
+    axios "^0.21.1"
+    big-roman "^1.0.1"
+    get-age "^1.0.1"
+    moment "^2.29.1"
+
 "@nafkhanzam/react-next-components@^0.0.20":
   version "0.0.20"
   resolved "https://registry.yarnpkg.com/@nafkhanzam/react-next-components/-/react-next-components-0.0.20.tgz#12d323f4120aea907de38b793f7bff657d526ca0"

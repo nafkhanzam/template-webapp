@@ -1,3 +1,7 @@
+// TODO: Automate generation!
+
+// TODO: Separate children-able component and not!
+
 import {Theme} from "@/themes/base";
 import {EssentialComponents} from "@nafkhanzam/react-next-components";
 import React from "react";
@@ -11,9 +15,10 @@ export class AppComponents extends EssentialComponents {
   constructor(public theme: Theme) {
     super();
   }
-  wrap = <Type, Props>(Comp: Comp<Type, Props>): ClassFC<typeof Comp> => (props) => (
-    <Comp comp={this} {...props} />
-  );
+  wrap =
+    <Type, Props>(Comp: Comp<Type, Props>): ClassFC<typeof Comp> =>
+    (props) =>
+      <Comp comp={this} {...props} />;
 
   Component = this.wrap(Component);
 
